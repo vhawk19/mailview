@@ -3,6 +3,10 @@ import { messages } from '@/lib/data';
 import MailListItem from '@/components/MailListItem';
 
 const MailList = () => {
+  // const data = useGetMails();
+
+  // console.log({ data });
+
   return (
     <ul
       role='list'
