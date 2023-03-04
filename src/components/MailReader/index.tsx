@@ -1,6 +1,6 @@
 const MailReader = () => {
   return (
-    <div className='flex h-full w-full flex-col items-center justify-center rounded-lg bg-white p-5 shadow-2xl'>
+    <div className='flex h-full w-full flex-col items-center justify-center rounded-lg bg-white p-5'>
       <div className='flex w-[100%] items-center justify-between'>
         <div className='flex flex-col items-start justify-between'>
           <p className='text-md opacity-90'>Varun Krishna</p>

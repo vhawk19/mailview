@@ -6,7 +6,7 @@ const MailList = () => {
   return (
     <ul
       role='list'
-      className='h-full w-96 divide-y divide-gray-200 overflow-auto rounded-lg bg-white shadow-2xl'
+      className='h-full w-96 divide-y divide-gray-200 overflow-auto rounded-lg bg-white'
     >
       {messages.map((message, idx) => (
         <MailListItem key={idx} message={message} idx={idx} />
