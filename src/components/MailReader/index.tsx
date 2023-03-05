@@ -16,7 +16,9 @@ const MailReader = ({ selectedMail }) => {
             </div>
 
             <div className='mb-auto flex flex-col items-end justify-between'>
-              <p className='text-sm opacity-70'>2022, June 22, 10:30 AM</p>
+              <p className='text-sm opacity-70'>
+                {new Date(selectedMail.datetime).toDateString()}
+              </p>
             </div>
           </>
         ) : (
