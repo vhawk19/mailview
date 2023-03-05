@@ -6,7 +6,7 @@ export const getServerURL = () => {
 };
 
 export const post = (url: string, data = {}) => {
-  axios.post(
+  return axios.post(
     getServerURL() + url,
     { ...data },
     {
@@ -39,6 +39,9 @@ export const signIn = ({
   username: string;
   pswd: string;
 }) => {
-  post(`login`, { username: username, password: pswd });
-  return window.location.replace(`/`);
+  post(`login/`, { username: username, password: pswd }).then((res) => {
+    if (res.status === 200) {
+      window.location.replace('/');
+    }
+  });
 };
