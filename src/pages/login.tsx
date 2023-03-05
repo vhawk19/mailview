@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { signIn } from '@/lib/api';
+import { logIn } from '@/lib/api';
 
-const SignIn = () => {
+const LogIn = () => {
   const [pswd, setPswd] = useState('');
   const [email, setEmail] = useState('');
 
@@ -61,7 +61,7 @@ const SignIn = () => {
               <div>
                 <button
                   onClick={() =>
-                    signIn({
+                    logIn({
                       username: email,
                       pswd: pswd,
                     })
@@ -79,4 +79,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LogIn;

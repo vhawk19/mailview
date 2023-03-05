@@ -32,7 +32,7 @@ const getMails = () => {
   return get(`messages`);
 };
 
-export const signIn = ({
+export const logIn = ({
   username,
   pswd,
 }: {
@@ -44,4 +44,22 @@ export const signIn = ({
       window.location.replace('/');
     }
   });
+};
+
+export const signUp = ({
+  username,
+  pswd,
+  host,
+}: {
+  username: string;
+  pswd: string;
+  host: string;
+}) => {
+  post(`signup/`, { username: username, password: pswd, hostname: host }).then(
+    (res) => {
+      if (res.status === 200) {
+        window.location.replace('/');
+      }
+    }
+  );
 };
