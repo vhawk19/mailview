@@ -1,6 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { RiSendPlane2Fill } from 'react-icons/ri';
+
+import { sendMail } from '@/lib/api';
 
 const MailCompose = ({
   open,
@@ -9,6 +11,22 @@ const MailCompose = ({
   open: boolean;
   setOpen: (open: boolean) => void;
 }) => {
+  const [toAddr, setToAddr] = useState('varun@0xparc.space');
+  const [subject, setSubject] = useState('');
+  const [msg, setMsg] = useState('');
+
+  const [pswd, setPswd] = useState('');
+
+  useEffect(() => {
+    const user = localStorage.getItem('userData');
+
+    if (!user) {
+      return window.location.replace('/');
+    }
+
+    setPswd(JSON.parse(user).password);
+  }, [pswd]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -35,70 +53,48 @@ const MailCompose = ({
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
-              <Dialog.Panel className='relative flex w-full transform flex-col overflow-hidden rounded-lg bg-white p-6 text-left shadow-xl transition-all sm:my-8 sm:max-w-md'>
-                <div>
-                  <div className='overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-sky-800 focus-within:ring-1 focus-within:ring-sky-800'>
-                    <div className='border-none'>
-                      <div className='relative mt-2 rounded-md border-none shadow-sm'>
-                        <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
-                          <span className='text-gray-500 sm:text-sm'>To: </span>
-                        </div>
-                        <input
-                          type='text'
-                          name='price'
-                          id='price'
-                          className='ml-2 block w-full rounded-md border-0 border-none py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                          placeholder='email'
-                        />
-                      </div>
-                    </div>
-
-                    <label htmlFor='title' className='sr-only'>
-                      Subject
-                    </label>
+              <Dialog.Panel className='relative w-[600px] transform flex-col items-start justify-start overflow-hidden rounded-lg bg-white p-6 text-left shadow-xl transition-all sm:my-8 '>
+                <div className='w-full rounded-lg border border-black border-opacity-10 p-2'>
+                  <div className='flex items-start justify-start border-b p-2'>
+                    <span className='opacity-50'>To: </span>
                     <input
-                      type='text'
-                      name='title'
-                      id='title'
-                      className='block w-full border-b border-black border-opacity-5 pt-2.5 text-lg font-medium placeholder:text-gray-400 focus:ring-0'
-                      placeholder='Subject'
+                      onChange={(e) => setToAddr(e.target.value)}
+                      className='ml-2 w-full focus:outline-none'
                     />
-                    <label htmlFor='description' className='sr-only'>
-                      Description
-                    </label>
-                    <textarea
-                      rows={2}
-                      name='description'
-                      id='description'
-                      className='block w-full resize-none border-0 py-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
-                      placeholder='Write your mail...'
-                      defaultValue=''
-                    />
+                  </div>
 
-                    {/* Spacer element to match the height of the toolbar */}
-                    <div aria-hidden='true'>
-                      <div className='py-2'>
-                        <div className='h-9' />
-                      </div>
-                      <div className='h-px' />
-                      <div className='py-2'>
-                        <div className='py-px'>
-                          <div className='h-9' />
-                        </div>
-                      </div>
-                    </div>
+                  <div className='flex items-start justify-start border-b p-2'>
+                    <span className='opacity-50'>Subject: </span>
+                    <input
+                      onChange={(e) => setSubject(e.target.value)}
+                      className='ml-2 w-full focus:outline-none'
+                    />
+                  </div>
+
+                  <div className='flex flex-col items-start justify-start p-2'>
+                    <span className='opacity-50'>Message: </span>
+                    <textarea
+                      onChange={(e) => setMsg(e.target.value)}
+                      className='h-32 w-full border-0 p-0 pt-2 focus:outline-none active:outline-none'
+                    />
                   </div>
                 </div>
 
-                <div className=''></div>
-                <div className='mt-5 sm:mt-6'>
+                <div className='mt-4 flex items-end justify-end'>
                   <button
-                    type='button'
-                    className='inline-flex w-full items-center justify-center rounded-md bg-sky-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      sendMail({
+                        from: 'aayush@0xparc.space',
+                        body: msg,
+                        to: toAddr,
+                        sub: subject,
+                        pswd: pswd,
+                      });
+                    }}
+                    className='flex items-center justify-center rounded-full bg-sky-900 px-6 py-3 text-sm font-semibold text-white text-opacity-90 transition ease-in-out hover:scale-105 hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 active:scale-95'
                   >
                     Send
-                    <RiSendPlane2Fill className='ml-4' />
+                    <RiSendPlane2Fill className='ml-2 h-3 w-3' />
                   </button>
                 </div>
               </Dialog.Panel>
