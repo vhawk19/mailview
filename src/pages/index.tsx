@@ -8,11 +8,15 @@ import MailReader from '@/components/MailReader';
 
 export default function HomePage() {
   const isMobile = useIsMobile();
+  const [selectedMail, setSelectedMail] = React.useState({});
   return (
     <Layout>
       <div className='flex justify-center space-x-4 md:h-[90vh] md:rounded-lg'>
-        <MailList />
-        {!isMobile && <MailReader />}
+        <MailList
+          selectedMail={selectedMail}
+          setSelectedMail={setSelectedMail}
+        />
+        {!isMobile && <MailReader selectedMail={selectedMail} />}
       </div>
     </Layout>
   );

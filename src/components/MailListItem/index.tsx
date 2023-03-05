@@ -1,24 +1,38 @@
 import clsx from 'clsx';
+import { useRouter } from 'next/router';
 
 import { messages } from '@/lib/data';
+import { useIsMobile } from '@/lib/hooks';
 
 const MailListItem = ({
   message,
   idx,
+  selectedMail,
+  setSelectedMail,
 }: {
   message: (typeof messages)[0];
   idx: number;
 }) => {
+  const router = useRouter();
+  const isMobile = useIsMobile();
   return (
     <li
+      onClick={() => {
+        setSelectedMail(message);
+        localStorage.setItem('mail', JSON.stringify(message));
+        if (isMobile) {
+          router.push('mail');
+        }
+      }}
       key={message.id}
       className={clsx(
-        'relative bg-white py-5 pl-4 pr-8 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50',
+        'relative block bg-white py-5 pl-4 pr-8 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ',
         idx === 0
           ? 'rounded-t-lg'
           : idx === messages.length - 1
           ? 'rounded-b-lg'
-          : ''
+          : '',
+        selectedMail.id === message.id ? ' bg-slate-100' : ''
       )}
     >
       <div className='flex justify-between space-x-3'>
