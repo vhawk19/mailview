@@ -1,3 +1,4 @@
+import { Letter } from 'react-letter';
 interface IMailReaderProps {
   selectedMail: {
     id: string;
@@ -44,7 +45,7 @@ const MailReader = ({ selectedMail }: IMailReaderProps) => {
           </p>
         ) : (
           <div className='p-4'>
-            <div dangerouslySetInnerHTML={{ __html: selectedMail.email }}></div>
+            <Letter html={selectedMail.email} />;
             {/* {console.log(selectedMail.email)} {parse(selectedMail.email)} */}
           </div>
         )}

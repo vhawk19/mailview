@@ -9,3 +9,13 @@ export const useIsMobile = (): boolean => {
 
   return isMobile;
 };
+
+export const useIsTablet = (): boolean => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsMobile(window.innerWidth < 1400);
+  }, []);
+
+  return isMobile;
+};
