@@ -25,6 +25,32 @@ export const get = (url: string) => {
   });
 };
 
+export const sendMail = ({
+  from,
+  pswd,
+  to,
+  sub,
+  body,
+}: {
+  from: string;
+  pswd: string;
+  to: string;
+  sub: string;
+  body: string;
+}) => {
+  post('message/', {
+    from_addr: from,
+    password: pswd,
+    to_addr: to,
+    subject: sub,
+    body: body,
+  }).then((res) => {
+    if (res.status) {
+      return 'mailsent';
+    }
+  });
+};
+
 export const useGetMails = (option = {}) =>
   useQuery(['Mails'], getMails, { ...option });
 

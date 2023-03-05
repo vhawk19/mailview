@@ -1,6 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { RiSendPlane2Fill } from 'react-icons/ri';
+
+import { sendMail } from '@/lib/api';
 
 const MailCompose = ({
   open,
@@ -9,6 +11,22 @@ const MailCompose = ({
   open: boolean;
   setOpen: (open: boolean) => void;
 }) => {
+  const [toAddr, setToAddr] = useState('varun@0xparc.space');
+  const [subject, setSubject] = useState('');
+  const [msg, setMsg] = useState('');
+
+  const [pswd, setPswd] = useState('');
+
+  useEffect(() => {
+    const user = localStorage.getItem('userData');
+
+    if (!user) {
+      return window.location.replace('/');
+    }
+
+    setPswd(JSON.parse(user).password);
+  }, [pswd]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -39,22 +57,42 @@ const MailCompose = ({
                 <div className='w-full rounded-lg border border-black border-opacity-10 p-2'>
                   <div className='flex items-start justify-start border-b p-2'>
                     <span className='opacity-50'>To: </span>
-                    <input className='ml-2 w-full focus:outline-none' />
+                    <input
+                      onChange={(e) => setToAddr(e.target.value)}
+                      className='ml-2 w-full focus:outline-none'
+                    />
                   </div>
 
                   <div className='flex items-start justify-start border-b p-2'>
                     <span className='opacity-50'>Subject: </span>
-                    <input className='ml-2 w-full focus:outline-none' />
+                    <input
+                      onChange={(e) => setSubject(e.target.value)}
+                      className='ml-2 w-full focus:outline-none'
+                    />
                   </div>
 
                   <div className='flex flex-col items-start justify-start p-2'>
                     <span className='opacity-50'>Message: </span>
-                    <textarea className='h-32 w-full border-0 focus:outline-none active:outline-none' />
+                    <textarea
+                      onChange={(e) => setMsg(e.target.value)}
+                      className='h-32 w-full border-0 p-0 pt-2 focus:outline-none active:outline-none'
+                    />
                   </div>
                 </div>
 
                 <div className='mt-4 flex items-end justify-end'>
-                  <button className='flex items-center justify-center rounded-full bg-sky-900 px-6 py-3 text-sm font-semibold text-white text-opacity-90 transition ease-in-out hover:scale-105 hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 active:scale-95'>
+                  <button
+                    onClick={() => {
+                      sendMail({
+                        from: 'aayush@0xparc.space',
+                        body: msg,
+                        to: toAddr,
+                        sub: subject,
+                        pswd: pswd,
+                      });
+                    }}
+                    className='flex items-center justify-center rounded-full bg-sky-900 px-6 py-3 text-sm font-semibold text-white text-opacity-90 transition ease-in-out hover:scale-105 hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 active:scale-95'
+                  >
                     Send
                     <RiSendPlane2Fill className='ml-2 h-3 w-3' />
                   </button>
