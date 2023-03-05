@@ -13,8 +13,8 @@ export const get = (url: string) => {
   });
 };
 
-export const postraw = (url: string, data: object) => {
-  return axios.post(
+export const postraw = async (url: string, data: object) => {
+  return await axios.post(
     getServerURL() + url,
     { ...data },
     {
@@ -25,9 +25,9 @@ export const postraw = (url: string, data: object) => {
   );
 };
 
-export const post = (url: string, data: object) => {
+export const post = async (url: string, data: object) => {
   const userData = JSON.parse(localStorage.getItem('userData') || '');
-  return axios.post(
+  return await axios.post(
     getServerURL() + url,
     { ...data, ...userData },
     {
@@ -51,17 +51,21 @@ export const sendMail = ({
   sub: string;
   body: string;
 }) => {
-  post('message/', {
+  const res = post('message/', {
     from_addr: from,
     password: pswd,
     to_addr: to,
     subject: sub,
     body: body,
   }).then((res) => {
-    if (res.status) {
-      return 'mailsent';
+    if (res.status === 200) {
+      return res;
+    } else {
+      return null;
     }
   });
+
+  return res;
 };
 
 export const useGetMails = (option = {}) =>
@@ -71,25 +75,30 @@ const getMails = () => {
   return post(`messages/`, {});
 };
 
-export const logIn = ({
+export const logIn = async ({
   username,
   pswd,
 }: {
   username: string;
   pswd: string;
 }) => {
-  postraw(`login/`, { username: username, password: pswd }).then((res) => {
+  const res = await postraw(`login/`, {
+    username: username,
+    password: pswd,
+  }).then((res) => {
     if (res.status === 200) {
       localStorage.setItem(
         'userData',
         JSON.stringify({ username: username, password: pswd })
       );
-      window.location.replace('/');
+      return res;
     }
   });
+
+  return res;
 };
 
-export const signUp = ({
+export const signUp = async ({
   username,
   pswd,
   host,
@@ -102,7 +111,7 @@ export const signUp = ({
   smtp: string;
   pop: string;
 }) => {
-  post(`signup/`, {
+  const res = await post(`signup/`, {
     email: username,
     password: pswd,
     smtp_username: username,
@@ -120,7 +129,9 @@ export const signUp = ({
         'userData',
         JSON.stringify({ email: username, password: pswd })
       );
-      window.location.replace('/');
+      return res;
     }
   });
+
+  return res;
 };
