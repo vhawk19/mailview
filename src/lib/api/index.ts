@@ -31,3 +31,35 @@ export const useGetMails = (option = {}) =>
 const getMails = () => {
   return post(`messages/`, {});
 };
+
+export const logIn = ({
+  username,
+  pswd,
+}: {
+  username: string;
+  pswd: string;
+}) => {
+  post(`login/`, { username: username, password: pswd }).then((res) => {
+    if (res.status === 200) {
+      window.location.replace('/');
+    }
+  });
+};
+
+export const signUp = ({
+  username,
+  pswd,
+  host,
+}: {
+  username: string;
+  pswd: string;
+  host: string;
+}) => {
+  post(`signup/`, { username: username, password: pswd, hostname: host }).then(
+    (res) => {
+      if (res.status === 200) {
+        window.location.replace('/');
+      }
+    }
+  );
+};
