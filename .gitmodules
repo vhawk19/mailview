@@ -1,0 +1,3 @@
+[submodule "pypop"]
+	path = pypop
+	url = https://github.com/vhawk19/pypop
