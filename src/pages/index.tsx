@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import * as React from 'react';
 import { RiPencilFill } from 'react-icons/ri';
 
@@ -6,7 +7,8 @@ import { useIsMobile } from '@/lib/hooks';
 import Layout from '@/components/layout/Layout';
 import MailList from '@/components/layout/MailList';
 import MailCompose from '@/components/MailCompose';
-import MailReader from '@/components/MailReader';
+
+const MailReader = dynamic(import('@/components/MailReader'), { ssr: false });
 
 export default function HomePage() {
   const isMobile = useIsMobile();

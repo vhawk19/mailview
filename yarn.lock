@@ -3076,6 +3076,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
+base64-js@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
+  integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
+
 big-integer@^1.6.16:
   version "1.6.51"
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
@@ -5642,6 +5647,26 @@ language-tags@^1.0.5:
   dependencies:
     language-subtag-registry "~0.3.2"
 
+lettercoder@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/lettercoder/-/lettercoder-0.0.5.tgz#da6df02e5b3d2929b3c41369c5769d954e91ad5a"
+  integrity sha512-t/AQgvlY5U8mBnxY4968nSxj+YRfP1MM0h6GgR5lcw2PpBhkAf7SuRxug1i+KgJAk5q0CvOVe1j3xMg+oI80/g==
+  dependencies:
+    base64-js "^1.5.1"
+
+letterparser@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/letterparser/-/letterparser-0.0.10.tgz#f3678831bf3e96b0528a17e5376ac9bf3157ec7e"
+  integrity sha512-wJih0lnMrgEwTt4fyaoLDTb6lyn07KO6Od+1SP7h4zdP07z2baGLvWAIogYzL5kNLgcZf7F9kt4ie2zQHpvCpg==
+  dependencies:
+    base64-js "^1.5.1"
+    lettercoder "^0.0.5"
+
+lettersanitizer@^1.0.1:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/lettersanitizer/-/lettersanitizer-1.0.4.tgz#ff0b70b0224da7187c69ab3ec0bf94999a229042"
+  integrity sha512-kQmcAvPF291KnljrsZa6d7v+LawuBLtUIaVd7c0FgD+198RNnBWZDkOJ3wOS4R4ls1xlLBWLY4+g6g3O7lHzng==
+
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
@@ -6535,6 +6560,13 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-letter@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-letter/-/react-letter-0.3.1.tgz#53c44870f26ceb567bfa2603e5f928702e062e2a"
+  integrity sha512-++3Dz6CENKRvsjqF1/sOjBgJzNnQJp+RbkW61DG27P31O34C9ExubqWGG6qQl7gFIRmNW+Z53sGlvH6oMwS+bg==
+  dependencies:
+    lettersanitizer "^1.0.1"
 
 react-query@^3.39.3:
   version "3.39.3"

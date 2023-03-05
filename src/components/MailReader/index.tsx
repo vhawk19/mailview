@@ -1,3 +1,5 @@
+import { Letter } from 'react-letter';
+
 const MailReader = ({ selectedMail }) => {
   return (
     <div className='flex h-full w-full flex-col items-center justify-center bg-white p-5 md:rounded-lg'>
@@ -33,7 +35,7 @@ const MailReader = ({ selectedMail }) => {
           </p>
         ) : (
           <div className='p-4'>
-            <div dangerouslySetInnerHTML={{ __html: selectedMail.email }}></div>
+            <Letter html={selectedMail.email} />;
             {/* {console.log(selectedMail.email)} {parse(selectedMail.email)} */}
           </div>
         )}
