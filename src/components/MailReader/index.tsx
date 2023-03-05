@@ -34,6 +34,7 @@ const MailReader = ({ selectedMail }) => {
         ) : (
           <div className='p-4'>
             <div dangerouslySetInnerHTML={{ __html: selectedMail.email }}></div>
+            {/* {console.log(selectedMail.email)} {parse(selectedMail.email)} */}
           </div>
         )}
       </div>

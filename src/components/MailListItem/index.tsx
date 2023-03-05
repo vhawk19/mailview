@@ -26,7 +26,7 @@ const MailListItem = ({
       }}
       key={message.id}
       className={clsx(
-        'relative block bg-white py-5 pl-4 pr-8 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ',
+        'relative block py-5 pl-4 pr-8 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ',
         idx === 0
           ? 'rounded-t-lg'
           : idx === messages.length - 1
@@ -58,7 +58,7 @@ const MailListItem = ({
         </time>
       </div>
       <div className='mt-1'>
-        <p className='line-clamp-2 text-sm text-gray-600'>{message.preview}</p>
+        <p className='text-sm text-gray-600 line-clamp-2'>{message.preview}</p>
       </div>
     </li>
   );

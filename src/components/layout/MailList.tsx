@@ -14,14 +14,15 @@ const transformData = (data) => {
         sender: message._message.From,
         time: '',
         datetime: message._message.Date,
-        email: message._text_html ? message._text_html : message._text_plain[0],
+        email: message._text_html
+          ? message._text_html[0]
+          : message._text_plain[0],
         preview: message._text_plain[0],
         fromEmail: '',
         toEmail: message._message['Delivered-To'],
       };
     });
   }
-
   return res;
 };
 
