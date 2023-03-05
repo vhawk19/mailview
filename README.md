@@ -2,7 +2,21 @@
 A FOSS web based mail client made from the ground up focusing on quality on each level. We started with the aim of discovering what email is all about, hoping to find meaning through building in the email ecosystem. 
 
 
+> We have divided our thoughts and progress in two views, feel free to skip the more in-depth 10Ft view. 
 
+# 1000Ft view
+### Problem we are solving? 
+Building an alternative modern email client, with some future plans to work on architectural side of things. 
+
+### Short description
+A snappy minimal mail UI client that you can self-host all by yourself. You can register your mail server information on the Signup page `/signup`. The frontend is built using NextJS, Typescript, Tailwind. The backend is built with python hosted for testing purposes on railway.app.
+
+### Current Stage of the product 
+We have a bootstrapped version of our vision with the main Mail App, we don't have a name but we do have a better understanding compared to when we started.
+
+
+
+# 10Ft View
 ## Why?
 - There is a deficit in the availability of good email software that can make it's users life easier by just being what's it's supposed to be - an email app. 
 - While there is Superhuman, not everyone can afford to pay 30$ per month even if it offers the best email experience and that puts it in a elite circle, which we are not a fan of. 
