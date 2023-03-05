@@ -37,6 +37,6 @@ Varun amongst us has always been passionate and curious about email and as a tea
     - 2: The auth flows, and being able to send emails to atleast one tested email for now using the SMTP server setup. We allow the user to set up their emails using their host and port information alongwith their credentials. 
 - The daemon is not working ... 
 - Frontend: 
-    - Using the NextJS/Tailwind/Typescript to rapidly bootstrap our website and get it up and running. 
+    - Using the NextJS/Tailwind/Typescript to rapidly bootstrap our website and get it up and running. Credits: [theodoruclarence/ts-nextjs-tailwind-starter](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter)
     - Axios for fetching the data, we can use SWR/ReactQuerytools for handling the fetching of the data. 
     - Right now we have state to a minimal, so decided to not use any global state management like zustand for the scope of the event.
