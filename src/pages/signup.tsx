@@ -85,9 +85,9 @@ const SignUp = () => {
                     host: host,
                   })
                 }
-                className='mt-10 mb-4 flex w-full justify-center rounded-md bg-gray-900 py-4 px-3 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900'
+                className='mt-10 mb-4 flex w-full justify-center rounded-md bg-sky-900 py-4 px-3 text-sm font-semibold text-white transition ease-in-out hover:scale-105 hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 active:scale-95'
               >
-                Sign in
+                Sign Up
               </button>
             </div>
           </div>

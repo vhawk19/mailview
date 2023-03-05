@@ -41,6 +41,10 @@ export const logIn = ({
 }) => {
   post(`login/`, { username: username, password: pswd }).then((res) => {
     if (res.status === 200) {
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({ email: username, password: pswd })
+      );
       window.location.replace('/');
     }
   });
@@ -58,6 +62,10 @@ export const signUp = ({
   post(`signup/`, { username: username, password: pswd, hostname: host }).then(
     (res) => {
       if (res.status === 200) {
+        localStorage.setItem(
+          'userData',
+          JSON.stringify({ email: username, password: pswd })
+        );
         window.location.replace('/');
       }
     }
