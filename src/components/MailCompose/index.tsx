@@ -21,11 +21,11 @@ const MailCompose = ({
     const user = localStorage.getItem('userData');
 
     if (!user) {
-      return window.location.replace('/');
+      return window.location.replace('/login');
     }
 
     setPswd(JSON.parse(user).password);
-  }, [pswd]);
+  }, []);
 
   return (
     <Transition.Root show={open} as={Fragment}>

@@ -1,4 +1,15 @@
-const MailReader = ({ selectedMail }) => {
+interface IMailReaderProps {
+  selectedMail: {
+    id: string;
+    subject: string;
+    sender: string;
+    toEmail: string;
+    datetime: string;
+    email: string;
+  };
+}
+
+const MailReader = ({ selectedMail }: IMailReaderProps) => {
   return (
     <div className='flex h-full w-full flex-col items-center justify-center bg-white p-5 md:rounded-lg'>
       <div className='flex w-[100%] items-center justify-between'>

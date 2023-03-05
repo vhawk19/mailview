@@ -12,6 +12,8 @@ const MailListItem = ({
 }: {
   message: (typeof messages)[0];
   idx: number;
+  selectedMail: (typeof messages)[0];
+  setSelectedMail: (message: object) => void;
 }) => {
   const router = useRouter();
   const isMobile = useIsMobile();
