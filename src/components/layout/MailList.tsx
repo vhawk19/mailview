@@ -33,7 +33,7 @@ const MailList = ({ selectedMail, setSelectedMail }) => {
   return (
     <ul
       role='list'
-      className='h-full w-96 divide-y divide-gray-200 overflow-auto rounded-lg bg-white'
+      className='h-full w-[540px] divide-y divide-gray-200 overflow-auto rounded-lg bg-white'
     >
       {!data.isLoading ? (
         formattedData.map((message, idx) => (

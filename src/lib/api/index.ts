@@ -13,10 +13,23 @@ export const get = (url: string) => {
   });
 };
 
-export const post = (url: string, data: object) => {
+export const postraw = (url: string, data: object) => {
   return axios.post(
     getServerURL() + url,
-    { ...data, username: '', password: '' },
+    { ...data },
+    {
+      headers: {
+        Authorization: 'Basic ' + localStorage.getItem('auth'),
+      },
+    }
+  );
+};
+
+export const post = (url: string, data: object) => {
+  const userData = JSON.parse(localStorage.getItem('userData') || '');
+  return axios.post(
+    getServerURL() + url,
+    { ...data, ...userData },
     {
       headers: {
         Authorization: 'Basic ' + localStorage.getItem('auth'),
@@ -39,8 +52,12 @@ export const logIn = ({
   username: string;
   pswd: string;
 }) => {
-  post(`login/`, { username: username, password: pswd }).then((res) => {
+  postraw(`login/`, { username: username, password: pswd }).then((res) => {
     if (res.status === 200) {
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({ username: username, password: pswd })
+      );
       window.location.replace('/');
     }
   });
@@ -58,6 +75,10 @@ export const signUp = ({
   post(`signup/`, { username: username, password: pswd, hostname: host }).then(
     (res) => {
       if (res.status === 200) {
+        localStorage.setItem(
+          'userData',
+          JSON.stringify({ email: username, password: pswd })
+        );
         window.location.replace('/');
       }
     }

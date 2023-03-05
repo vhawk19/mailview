@@ -11,7 +11,7 @@ const LogIn = () => {
       <div className='flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <h2 className='mt-6 text-center text-3xl font-light tracking-tight text-gray-900'>
-            Sign in to mail
+            Welcome back
           </h2>
         </div>
 
@@ -66,9 +66,9 @@ const LogIn = () => {
                       pswd: pswd,
                     })
                   }
-                  className='mt-10 mb-4 flex w-full justify-center rounded-md bg-gray-900 py-4 px-3 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900'
+                  className='mt-10 mb-4 flex w-full justify-center rounded-md bg-sky-900 py-4 px-3 text-sm font-semibold text-white transition ease-in-out hover:scale-105 hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 active:scale-95'
                 >
-                  Sign in
+                  Login
                 </button>
               </div>
             </div>
